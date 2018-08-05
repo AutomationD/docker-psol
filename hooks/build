@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+set -ex
+
+while read -r mod_pagespeed_tag alpine_version;
+do
+  image=${DOCKER_REPO}:alpine-${alpine_version}-${mod_pagespeed_tag}
+  echo "# Building image ${image}..."
+
+  docker build \
+    --build-arg ALPINE_VER="${docker_version}" \
+    --build-arg MOD_PAGESPEED_TAG="${mod_pagespeed_tag}" \
+    --pull \
+    -t "${image}" .
+done < VERSION_MATRIX
