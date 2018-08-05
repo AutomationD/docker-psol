@@ -2,7 +2,7 @@
 
 set -ex
 
-while read -r mod_pagespeed_tag alpine_version;
+while read -r alpine_version mod_pagespeed_tag;
 do
   image=${DOCKER_REPO}:alpine-${alpine_version}-${mod_pagespeed_tag}
   echo "# Building image ${image}..."

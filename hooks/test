@@ -2,18 +2,4 @@
 
 set -ex
 
-while read -r mod_pagespeed_tag alpine_version;
-do
-  image=${DOCKER_REPO}:alpine-${alpine_version}-${mod_pagespeed_tag}
-  echo "# Testing image ${image}..."
-  export IMAGE_NAME="${image}"
-
-  container=$(docker-compose -f docker-compose.test.yml run -d sut)
-
-  if [ "$(docker container wait "${container}")" != "0" ]
-  then
-    echo "Test of ${IMAGE_NAME} failed"
-    exit 1
-  fi
-  docker-compose -f docker-compose.test.yml rm --force sut
-done < DOCKER_AND_COMPOSE_VERSION_MATRIX
+exit 0
