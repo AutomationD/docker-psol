@@ -34,7 +34,7 @@ RUN git clone -b ${MOD_PAGESPEED_TAG} \
 
 WORKDIR /usr/src/modpagespeed
 
-COPY patches/modpagespeed/*.patch ./
+COPY patches/*.patch ./
 
 RUN for i in *.patch; do printf "\r\nApplying patch ${i%%.*}\r\n"; patch -p1 < $i || exit 1; done
 

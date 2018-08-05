@@ -8,7 +8,7 @@ do
   echo "# Building image ${image}..."
 
   docker build \
-    --build-arg ALPINE_VER="${docker_version}" \
+    --build-arg ALPINE_VER="${alpine_version}" \
     --build-arg MOD_PAGESPEED_TAG="${mod_pagespeed_tag}" \
     --pull \
     -t "${image}" .
